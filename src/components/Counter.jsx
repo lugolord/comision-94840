@@ -1,7 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function Counter () {
   const [count, setCount] = useState(1)
+
+  useEffect(() => { // efecto
+    console.log('cualquier cosa')
+
+    return () => { // funcion de limpieza o cleanup function
+      console.log('se desmonto')
+    }
+  }, [count]) // array de dependencias
+
+  // [] -> el efecto solo se ejecuta 1 vez, en el montaje
+  // [a, b] -> el efecto se ejecuta en el montaje y cuando varie "a" o "b"
+  // Desmontaje -> necesito una funcion de limpieza
 
   const handleSumar = () => {
     setCount(count + 1)
