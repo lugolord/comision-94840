@@ -1,0 +1,9 @@
+.button {
+  padding: 10px;
+  background-color: red;
+}
+
+.buttonDark {
+  padding: 10px;
+  background-color: rgb(176, 9, 9);
+}
