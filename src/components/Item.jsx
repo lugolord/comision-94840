@@ -1,16 +1,24 @@
+import { useNavigate } from 'react-router'
+
 function Item ({ item }) {
+  const navigate = useNavigate()
+
+  const handleClick = () => navigate(`/product/${item.id}`)
+
   return (
     <div className="card bg-base-300 shadow-sm">
       <figure>
         <img
-          src={item.image}
-          alt={item.name}/>
+          src={item.thumbnail}
+          alt={item.title}/>
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{item.name}</h2>
-        <p>Aca va la descripcion de este producto</p>
+        <h2 className="card-title">{item.title}</h2>
+        <p>${item.price}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-block btn-primary">Ver mas</button>
+          <button onClick={handleClick} className="btn btn-block btn-primary">
+            Ver mas
+          </button>
         </div>
       </div>
     </div>

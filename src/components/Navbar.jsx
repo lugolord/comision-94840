@@ -1,8 +1,23 @@
+import { Link } from 'react-router'
+import { useState, useEffect } from 'react'
+import CategoriesBar from './CategoriesBar'
+
 function Navbar () {
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    fetch('https://dummyjson.com/products/category-list')
+      .then(res => res.json())
+      .then(data => setCategories(data))
+  }, [])
+
   return (
     <div className="navbar bg-base-300 shadow-sm">
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">TiendaX</a>
+        <Link to='/' className="btn btn-ghost text-xl">TiendaX</Link>
+      </div>
+      <div>
+        <CategoriesBar categories={categories} />
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
@@ -19,7 +34,7 @@ function Navbar () {
               <span className="text-lg font-bold">8 Items</span>
               <span className="text-info">Subtotal: $999</span>
               <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
+                <Link to='/cart' className="btn btn-primary btn-block">View cart</Link>
               </div>
             </div>
           </div>
